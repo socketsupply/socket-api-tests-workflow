@@ -13,8 +13,8 @@ on:
         default: false
         required: false
         type: boolean
-      skip_git_clone_io:
-        description: 'skip cloning the io repo'
+      skip_git_clone_socket_api:
+        description: 'skip cloning the socket api repo'
         default: false
         required: false
         type: boolean
@@ -60,16 +60,16 @@ jobs:
         ./bin/install.sh
         ./bin/ci_version_check.sh
 
-    - name: install an io example app
+    - name: install an socket api example app
       if: ${{ !inputs.skip_git_clone_io }}
       run: |
         git config --global user.email "devops@optool.co"
         git config --global user.name "Optool Github Actions"
-        git clone --depth 1 git@github.com:socketsupply/io.git
+        git clone --depth 1 git@github.com:socketsupply/socket-api.git
 
-    - name: test an io example app
+    - name: test an socket api example app
       run: |
-        cd io && npm install && npm test
+        cd socket-api && npm install && npm test
       env:
         CI: true
         NODE_AUTH_TOKEN: ${{ secrets.PACKAGE_PAT }}
@@ -112,16 +112,16 @@ jobs:
         ./bin/install.sh
         ./bin/ci_version_check.sh
 
-    - name: install an io example app
+    - name: install an socket api example app
       if: ${{ !inputs.skip_git_clone_io }}
       run: |
         git config --global user.email "devops@optool.co"
         git config --global user.name "Optool Github Actions"
-        git clone --depth 1 git@github.com:socketsupply/io.git
+        git clone --depth 1 git@github.com:socketsupply/socket-api.git
 
-    - name: test an io example app
+    - name: test an socket api example app
       run: |
-        cd io && npm install && npm test
+        cd socket-api && npm install && npm test
       env:
         CI: true
         NODE_AUTH_TOKEN: ${{ secrets.PACKAGE_PAT }}
@@ -164,16 +164,16 @@ jobs:
         ./bin/install.sh
         ./bin/ci_version_check.sh
 
-    - name: install an io example app
+    - name: install an socket api example app
       if: ${{ !inputs.skip_git_clone_io }}
       run: |
         git config --global user.email "devops@optool.co"
         git config --global user.name "Optool Github Actions"
-        git clone --depth 1 git@github.com:socketsupply/io.git
+        git clone --depth 1 git@github.com:socketsupply/socket-api.git
 
-    - name: test an io example app
+    - name: test an socket api example app
       run: |
-        cd io && npm install && npm run test:ios-simulator
+        cd socket-api && npm install && npm run test:ios-simulator
       env:
         CI: true
         NODE_AUTH_TOKEN: ${{ secrets.PACKAGE_PAT }}
@@ -220,12 +220,12 @@ jobs:
         ./bin/install.sh
         ./bin/ci_version_check.sh
 
-    - name: install an io example app
+    - name: install an socket api example app
       if: ${{ !inputs.skip_git_clone_io }}
       run: |
         git config --global user.email "devops@optool.co"
         git config --global user.name "Optool Github Actions"
-        git clone --depth 1 git@github.com:socketsupply/io.git
+        git clone --depth 1 git@github.com:socketsupply/socket-api.git
 
     - name: Gradle cache
       uses: gradle/gradle-build-action@v2.3.3
@@ -264,7 +264,7 @@ jobs:
         profile: pixel_5
         ndk: 25.0.8775105
         script: |
-          cd ../io && npm install && npm run test:android
+          cd ../socket-api && npm install && npm run test:android
       env:
         CI: true
         CXX: g++-12
@@ -319,12 +319,12 @@ jobs:
         ./bin/install.sh
         ./bin/ci_version_check.sh
 
-    - name: install an io example app
+    - name: install an socket api example app
       if: ${{ !inputs.skip_git_clone_io }}
       run: |
         git config --global user.email "devops@optool.co"
         git config --global user.name "Optool Github Actions"
-        git clone --depth 1 git@github.com:socketsupply/io.git
+        git clone --depth 1 git@github.com:socketsupply/socket-api.git
 
     - name: Gradle cache
       uses: gradle/gradle-build-action@v2
@@ -363,13 +363,13 @@ jobs:
         profile: pixel_5
         ndk: 25.0.8775105
         script: |
-          cd io && npm install && npm run test:android
+          cd socket-api && npm install && npm run test:android
       env:
         CI: true
         CXX: g++-12
         NODE_AUTH_TOKEN: ${{ secrets.PACKAGE_PAT }}
 
-  # TODO: Fix conditionally install Socket Runtime and io example app
+  # TODO: Fix conditionally install Socket Runtime and socket api example app
   windows:
     name: Windows
     runs-on: windows-2022
@@ -413,7 +413,7 @@ jobs:
         cd socket
         ./bin/ci_version_check.ps1
 
-    # TODO: run io tests instead
+    # TODO: run socket api tests instead
     - name: install an example app
       run: |
         git config --global core.sshCommand "'C:\Windows\System32\OpenSSH\ssh.exe'"
@@ -421,8 +421,8 @@ jobs:
         git config --global core.compression 0
         git config --global user.email "devops@optool.co"
         git config --global user.name "Optool Github Actions"
-        git clone --depth 1 git@github.com:socketsupply/io.git
-        cd ../io && npm install && cd test && ssc build -r --headless
+        git clone --depth 1 git@github.com:socketsupply/socket-api.git
+        cd ../socket-api && npm install && cd test && ssc build -r --headless
       env:
         CI: true
         NODE_AUTH_TOKEN: ${{ secrets.PACKAGE_PAT }}
