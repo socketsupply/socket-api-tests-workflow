@@ -23,7 +23,7 @@ jobs:
   linux:
     name: Linux
     runs-on: ubuntu-22.04
-    timeout-minutes: 4
+    timeout-minutes: 6
     defaults:
       run:
         working-directory: ..
