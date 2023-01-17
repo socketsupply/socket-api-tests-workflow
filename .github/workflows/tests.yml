@@ -401,7 +401,6 @@ jobs:
 
     - name: build Socket Runtime
       run: |
-        cd socket
         ./bin/install.ps1
         echo "::add-path::$env:LOCALAPPDATA\Programs\socketsupply\bin"
         echo "$env:LOCALAPPDATA\Programs\socketsupply\bin" >> $env:GITHUB_PATH
@@ -410,19 +409,19 @@ jobs:
 
     - name: Check if ssc has a correct version
       run: |
-        cd socket
         ./bin/ci_version_check.ps1
 
     # TODO: run socket api tests instead
     - name: install an example app
       run: |
+        cd ..
         git config --global core.sshCommand "'C:\Windows\System32\OpenSSH\ssh.exe'"
         git config --global http.postBuffer 157286400
         git config --global core.compression 0
         git config --global user.email "devops@optool.co"
         git config --global user.name "Optool Github Actions"
         git clone --depth 1 git@github.com:socketsupply/socket-api.git
-        cd ../socket-api && npm install && cd test && ssc build -r --headless
+        cd socket-api && npm install && cd test && ssc build -r --headless
       env:
         CI: true
         NODE_AUTH_TOKEN: ${{ secrets.PACKAGE_PAT }}
